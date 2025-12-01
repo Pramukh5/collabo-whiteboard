@@ -361,8 +361,9 @@ io.on("connection", (socket) => {
 });
 
 // Catch-all route for React SPA (must be after all other routes)
+// Express 5 requires '{*path}' syntax instead of '*'
 if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
+  app.get('{*path}', (req, res) => {
     res.sendFile(path.join(__dirname, '../build', 'index.html'));
   });
 }
