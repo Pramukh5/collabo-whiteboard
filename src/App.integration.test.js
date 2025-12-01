@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 
 // Mock socket.io-client
 jest.mock('socket.io-client', () => {
@@ -100,10 +100,14 @@ beforeAll(() => {
 
 import App from './App';
 
-test('App renders without crashing', async () => {
-  render(<App />);
-  
-  await waitFor(() => {
-    expect(document.body).toBeInTheDocument();
+describe('App Component', () => {
+  describe('App Rendering', () => {
+    test('renders without crashing', async () => {
+      render(<App />);
+      
+      await waitFor(() => {
+        expect(document.body).toBeInTheDocument();
+      });
+    });
   });
 });
